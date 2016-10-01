@@ -1,0 +1,15 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "es6"
+    ],
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "sourceMap": true
+  },
+  "include": [
+    "src/**/*.ts"
+  ]
+}

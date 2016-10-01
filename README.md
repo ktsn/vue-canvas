@@ -1,0 +1,5 @@
+# vue-canvas
+
+## License
+
+MIT
