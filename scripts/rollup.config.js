@@ -10,6 +10,10 @@ const config = {
       typescript: require('typescript')
     })
   ],
+  external: ['vue'],
+  globals: {
+    vue: 'Vue'
+  },
   banner: `/*!
  * ${meta.name} v${meta.version}
  * ${meta.homepage}

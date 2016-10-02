@@ -8,11 +8,10 @@ module.exports = {
     filename: 'test.js'
   },
   resolve: {
-    modulesDirectories: ['node_modules'],
-    extensions: ['', '.ts', '.js']
+    extensions: ['.js', '.json', '.ts']
   },
   module: {
-    loaders: [
+    rules: [
       { test: /\.ts$/, loader: 'webpack-espower!ts' },
       { test: /\.json$/, loader: 'json-loader' }
     ]
