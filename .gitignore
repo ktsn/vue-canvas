@@ -3,3 +3,4 @@ typings/
 
 /dist/
 /.tmp/
+/examples/*/__build__.js

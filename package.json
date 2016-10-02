@@ -18,10 +18,11 @@
   "scripts": {
     "prepublish": "npm run build",
     "clean": "rm -rf dist .tmp",
-    "build": "run-p build:*",
+    "build": "run-p build:cjs build:dev build:prod",
     "build:cjs": "rollup -c scripts/rollup.config.js --environment BUILD:commonjs",
     "build:dev": "rollup -c scripts/rollup.config.js --environment BUILD:development",
     "build:prod": "rollup -c scripts/rollup.config.js --environment BUILD:production | uglifyjs -mc warnings=false --comments -o dist/vue-canvas.min.js",
+    "build:example": "webpack --config scripts/webpack.config.example.js",
     "watch:test": "webpack --watch --config scripts/webpack.config.test.js",
     "testem": "testem",
     "lint": "tslint \"src/**/*.ts\" && tslint \"test/**/*.ts\"",
@@ -31,6 +32,9 @@
   "devDependencies": {
     "@types/mocha": "^2.2.32",
     "@types/power-assert": "0.0.28",
+    "buble": "^0.13.2",
+    "buble-loader": "^0.3.0",
+    "css-loader": "^0.25.0",
     "glob": "^7.1.0",
     "json-loader": "^0.5.4",
     "npm-run-all": "^3.1.0",
@@ -43,6 +47,7 @@
     "tslint": "^3.15.1",
     "typescript": "^2.0.3",
     "vue": "^2.0.1",
+    "vue-loader": "^9.5.1",
     "webpack": "^2.1.0-beta.25",
     "webpack-espower-loader": "^1.0.1"
   }
