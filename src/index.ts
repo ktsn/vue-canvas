@@ -1,3 +1,2 @@
-export default {
-  // this file is the entry point of the project
-}
+export { default as Context2d } from './Context2d'
+export { default as Rectangle } from './Rectangle'
