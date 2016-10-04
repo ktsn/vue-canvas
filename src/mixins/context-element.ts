@@ -1,5 +1,6 @@
 import * as Vue from 'vue'
 import { ComponentOptions } from 'vue'
+import { throttledTick } from '../utils'
 
 interface ContextElementMixin extends Vue {
   eventBus: Vue
@@ -11,7 +12,7 @@ export default {
   beforeCreate () {
     this.eventBus = new Vue()
     this.eventBus.$on('update', () => {
-      this.render()
+      throttledTick(this.render)
     })
   },
 
@@ -24,9 +25,9 @@ export default {
     render () {
       const { width, height } = this._ctx.canvas
       this._ctx.clearRect(0, 0, width, height)
+
       this.$children.forEach((child: Vue) => {
         const options = child.$options.canvas!
-
         options.render!.call(child, this._ctx)
       })
     }
