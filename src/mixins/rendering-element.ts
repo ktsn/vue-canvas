@@ -1,14 +1,13 @@
 import * as Vue from 'vue'
 import { ComponentOptions } from 'vue'
+import { Dictionary } from '../declarations'
+
 import { shallowEqual, assert } from '../utils'
 
 interface RenderingElementMixin extends Vue {
   _prevData: any
   eventBus: Vue
-  shouldRerender (
-    prev: { [key: string]: any },
-    next: { [key: string]: any }
-  ): boolean
+  shouldRerender (prev: Dictionary<any>, next: Dictionary<any>): boolean
 }
 
 export default {
@@ -33,10 +32,7 @@ export default {
   },
 
   methods: {
-    shouldRerender (
-      prev: { [key: string]: any },
-      next: { [key: string]: any }
-    ): boolean {
+    shouldRerender (prev: Dictionary<any>, next: Dictionary<any>): boolean {
       return shallowEqual(prev, next)
     }
   },
