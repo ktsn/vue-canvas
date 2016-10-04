@@ -11,8 +11,6 @@ export default {
   beforeCreate () {
     this.eventBus = new Vue()
     this.eventBus.$on('update', () => {
-      const { width, height } = this._ctx.canvas
-      this._ctx.clearRect(0, 0, width, height)
       this.render()
     })
   },
@@ -24,10 +22,11 @@ export default {
 
   methods: {
     render () {
+      const { width, height } = this._ctx.canvas
+      this._ctx.clearRect(0, 0, width, height)
       this.$children.forEach((child: Vue) => {
         const options = child.$options.canvas!
 
-        this._ctx.beginPath()
         options.render!.call(child, this._ctx)
       })
     }

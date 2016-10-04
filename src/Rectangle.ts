@@ -37,6 +37,7 @@ export default {
 
   canvas: {
     render (ctx) {
+      ctx.beginPath()
       ctx.rect(this.x, this.y, this.width, this.height)
       if (this.fill) {
         ctx.fill()
