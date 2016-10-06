@@ -52,43 +52,4 @@ describe('Context Mixin', () => {
       })
     })
   })
-
-  it('renders all children', done => {
-    const spy1 = sinon.spy()
-    const spy2 = sinon.spy()
-
-    const Child1 = {
-      canvas: {
-        render: spy1
-      },
-      render
-    }
-
-    const Child2 = {
-      canvas: {
-        render: spy2
-      },
-      render
-    }
-
-    const Context = {
-      mixins: [contextMixin],
-      canvas: {
-        getContext: () => mockCtx
-      }
-    }
-
-    const vm: any = new Vue({
-      render: h => h(Context, [
-        h(Child1),
-        h(Child2)
-      ])
-    }).$mount()
-
-    Vue.nextTick(() => {
-      assert(spy1.called)
-      assert(spy2.called)
-      done()
-    })
-  })
 })
