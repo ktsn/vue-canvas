@@ -1,9 +1,9 @@
 import * as assert from 'power-assert'
 import * as sinon from 'sinon'
 import * as Vue from 'vue'
-import contextElementMixin from '../../src/mixins/context-element'
+import contextMixin from '../../src/mixins/context'
 
-describe('Context Element Mixin', () => {
+describe('Context Mixin', () => {
   const render = (h: any) => h()
   const mockCtx: any = {
     canvas: { width: 0, height: 0 },
@@ -12,7 +12,7 @@ describe('Context Element Mixin', () => {
 
   it('observes all updates and renders only once', done => {
     const vm: any = new Vue({
-      mixins: [contextElementMixin],
+      mixins: [contextMixin],
       canvas: {
         getContext: () => mockCtx
       },
@@ -55,12 +55,9 @@ describe('Context Element Mixin', () => {
     }
 
     const Context = {
-      mixins: [contextElementMixin],
+      mixins: [contextMixin],
       canvas: {
         getContext: () => mockCtx
-      },
-      render (h: any) {
-        return h('canvas', this.$slots.default)
       }
     }
 

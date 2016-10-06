@@ -2,7 +2,7 @@ import * as Vue from 'vue'
 import { ComponentOptions } from 'vue'
 import { throttledTick } from '../utils'
 
-interface ContextElementMixin extends Vue {
+interface ContextMixin extends Vue {
   height: number
   width: number 
   eventBus: Vue
@@ -53,4 +53,4 @@ export default {
       attrs: { height, width }
     }, this.$slots['default'])
   }
-} as ComponentOptions<ContextElementMixin>
+} as ComponentOptions<ContextMixin>

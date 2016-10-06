@@ -1,6 +1,6 @@
 import * as Vue from 'vue'
 import { ComponentOptions } from 'vue'
-import renderingElementMixin from './mixins/rendering-element'
+import shapeMixin from './mixins/shape'
 
 interface Rectangle extends Vue {
   fill?: boolean
@@ -12,7 +12,7 @@ interface Rectangle extends Vue {
 }
 
 export default {
-  mixins: [renderingElementMixin],
+  mixins: [shapeMixin],
 
   props: {
     fill: Boolean,

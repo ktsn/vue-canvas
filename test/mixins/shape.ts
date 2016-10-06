@@ -1,12 +1,12 @@
 import * as assert from 'power-assert'
 import * as sinon from 'sinon'
 import * as Vue from 'vue'
-import renderingElementMixin from '../../src/mixins/rendering-element'
+import shapeMixin from '../../src/mixins/shape'
 
-describe('Rendering Element Mixin', () => {
+describe('Shape Mixin', () => {
   it('must dispatch update event to context', done => {
     const Target = {
-      mixins: [renderingElementMixin],
+      mixins: [shapeMixin],
       props: {
         test: Number
       }
@@ -35,7 +35,7 @@ describe('Rendering Element Mixin', () => {
 
   it('does not notify update if there are no props update', done => {
     const Target = {
-      mixins: [renderingElementMixin],
+      mixins: [shapeMixin],
       props: {
         test: Number
       }

@@ -4,7 +4,7 @@ import { Dictionary } from '../declarations'
 
 import { shallowEqual, assert } from '../utils'
 
-interface RenderingElementMixin extends Vue {
+interface ShapeMixin extends Vue {
   _prevData: any
   eventBus: Vue
   shouldRerender (prev: Dictionary<any>, next: Dictionary<any>): boolean
@@ -51,7 +51,7 @@ export default {
     // always return empty node
     return h()
   }
-} as ComponentOptions<RenderingElementMixin>
+} as ComponentOptions<ShapeMixin>
 
 
 function findEventBus (target: Vue | undefined): Vue {

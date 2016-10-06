@@ -1,14 +1,9 @@
 import * as Vue from 'vue'
 import { ComponentOptions } from 'vue'
-import contextElementMixin from './mixins/context-element'
-
-interface Context2d extends Vue {
-  height: number
-  width: number
-}
+import contextMixin from './mixins/context'
 
 export default {
-  mixins: [contextElementMixin],
+  mixins: [contextMixin],
 
   canvas: {
     getContext () {
@@ -16,4 +11,4 @@ export default {
       return canvas.getContext('2d')!
     }
   }
-} as ComponentOptions<Context2d>
+} as ComponentOptions<Vue>
