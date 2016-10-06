@@ -1,4 +1,5 @@
 import * as Vue from 'vue'
+import './vue'
 
 export type Dictionary<T> = { [key: string]: T }
 

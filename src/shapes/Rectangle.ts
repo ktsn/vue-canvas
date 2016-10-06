@@ -1,6 +1,6 @@
 import * as Vue from 'vue'
 import { ComponentOptions } from 'vue'
-import shapeMixin from './mixins/shape'
+import shapeMixin from '../mixins/shape'
 
 interface Rectangle extends Vue {
   fill?: boolean

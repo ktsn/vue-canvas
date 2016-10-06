@@ -1,6 +1,6 @@
 import * as Vue from 'vue'
 import { ComponentOptions } from 'vue'
-import contextMixin from './mixins/context'
+import contextMixin from '../mixins/context'
 
 export default {
   mixins: [contextMixin],
