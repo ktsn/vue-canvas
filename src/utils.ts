@@ -1,6 +1,12 @@
 import * as Vue from 'vue'
 import { Dictionary } from './declarations'
 
+export const noop = () => {}
+
+export function warn (message: string): void {
+  console.error('[vue-canvas] ' + message)
+}
+
 export function assert (condition: boolean, message: string): void {
   if (!condition) {
     throw new Error('[vue-canvas] ' + message)

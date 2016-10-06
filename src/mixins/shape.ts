@@ -8,6 +8,7 @@ interface ShapeMixin extends Vue {
   _prevData: any
   eventBus: Vue
   shouldRerender (prev: Dictionary<any>, next: Dictionary<any>): boolean
+  findEventBus (target: Vue | undefined): Vue
 }
 
 export default {
@@ -27,13 +28,27 @@ export default {
 
   computed: {
     eventBus (): Vue {
-      return findEventBus(this)
+      return this.findEventBus(this)
     }
   },
 
   methods: {
     shouldRerender (prev: Dictionary<any>, next: Dictionary<any>): boolean {
       return shallowEqual(prev, next)
+    },
+
+    findEventBus (this: ShapeMixin, target: Vue | undefined): Vue {
+      assert(
+        target !== undefined,
+        `<${this._contentTag}> must be descendant of a context component`
+      )
+      const parent: Vue & { eventBus?: Vue } = target!.$parent
+
+      if (parent.eventBus) {
+        return parent.eventBus
+      }
+
+      return this.findEventBus(parent)
     }
   },
 
@@ -52,18 +67,3 @@ export default {
     return h()
   }
 } as ComponentOptions<ShapeMixin>
-
-
-function findEventBus (target: Vue | undefined): Vue {
-  assert(
-    target !== undefined,
-    `<${(target as any)._contentTag}> must be descendant of a context component`
-  )
-  const parent: Vue & { eventBus?: Vue } = target!.$parent
-
-  if (parent.eventBus) {
-    return parent.eventBus
-  }
-
-  return findEventBus(parent)
-}

@@ -1,12 +1,13 @@
 import * as Vue from 'vue'
 import { ComponentOptions } from 'vue'
-import { throttledTick } from '../utils'
+import { Renderer } from '../renderer'
+import { noop, throttledTick } from '../utils'
 
 interface ContextMixin extends Vue {
   height: number
-  width: number 
+  width: number
   eventBus: Vue
-  _ctx: CanvasRenderingContext2D
+  _renderer: Renderer
   render (): void
 }
 
@@ -27,22 +28,20 @@ export default {
     this.eventBus.$on('update', () => {
       throttledTick(this.render)
     })
+
+    this.$options.canvas!.render = noop
   },
 
   mounted () {
-    this._ctx = this.$options.canvas!.getContext!.call(this)
+    const ctx = this.$options.canvas!.getContext!.call(this)
+    this._renderer = new Renderer(ctx)
     this.render()
   },
 
   methods: {
-    render () {
-      const { width, height } = this._ctx.canvas
-      this._ctx.clearRect(0, 0, width, height)
-
-      this.$children.forEach((child: Vue) => {
-        const options = child.$options.canvas!
-        options.render!.call(child, this._ctx)
-      })
+    render (this: ContextMixin) {
+      this._renderer.clear()
+      this._renderer.render(this)
     }
   },
 

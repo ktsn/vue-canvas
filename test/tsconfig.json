@@ -1,6 +1,13 @@
 {
   "compileOnSave": false,
-  "compilerOptions": {},
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "es6"
+    ],
+    "sourceMap": true
+  },
   "include": [
     "**/*.ts",
     "../src/**/*.ts",
