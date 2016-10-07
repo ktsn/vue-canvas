@@ -2,13 +2,11 @@ import * as assert from 'power-assert'
 import * as sinon from 'sinon'
 import * as Vue from 'vue'
 import contextMixin from '../../src/mixins/context'
+import { MockCtx } from '../helpers/mock-ctx'
 
 describe('Context Mixin', () => {
   const render = (h: any) => h()
-  const mockCtx: any = {
-    canvas: { width: 0, height: 0 },
-    clearRect () {}
-  }
+  const mockCtx: any = new MockCtx()
 
   it('mount canvas element with specifying width and height', () => {
     const vm = new Vue({

@@ -10,7 +10,7 @@ export class Renderer {
   }
 
   render (vm: Vue): void {
-    const options = vm.$options.canvas
+    const options = vm.$options.canvas!
     if (process.env.NODE_ENV !== 'production') {
       if (!options || typeof options.render !== 'function') {
         warn(
@@ -20,8 +20,20 @@ export class Renderer {
         return
       }
     }
-    options!.render!.call(vm, this.ctx)
 
+    // set drawing state
+    this.ctx.save()
+    if (typeof options.applyDrawingState === 'function') {
+      options.applyDrawingState.call(vm, this.ctx)
+    }
+
+    // render target shape
+    options.render!.call(vm, this.ctx)
+
+    // render child shapes
     vm.$children.forEach(child => this.render(child))
+
+    // restore drawing state
+    this.ctx.restore()
   }
 }

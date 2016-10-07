@@ -2,6 +2,7 @@ import * as Vue from 'vue'
 import { ComponentOptions } from 'vue'
 import { Dictionary } from '../declarations'
 
+import drawingStateMixin from './drawing-state'
 import { shallowEqual, assert } from '../utils'
 
 interface ShapeMixin extends Vue {
@@ -12,6 +13,8 @@ interface ShapeMixin extends Vue {
 }
 
 export default {
+  mixins: [drawingStateMixin],
+
   created () {
     this._prevData = this.$options.propsData
   },

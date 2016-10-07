@@ -1,5 +1,6 @@
 import * as Vue from 'vue'
 import { ComponentOptions } from 'vue'
+import drawingStateMixin from './drawing-state'
 import { Renderer } from '../renderer'
 import { noop, throttledTick } from '../utils'
 
@@ -12,6 +13,8 @@ interface ContextMixin extends Vue {
 }
 
 export default {
+  mixins: [drawingStateMixin],
+
   props: {
     height: {
       type: Number,
