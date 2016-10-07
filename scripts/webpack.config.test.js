@@ -1,10 +1,12 @@
 const path = require('path')
 const glob = require('glob')
 
+const testFiles = glob.sync(resolve('../test/**/*.ts'))
+
 module.exports = {
-  entry: glob.sync(path.resolve(__dirname, '../test/**/*.ts')),
+  entry: testFiles,
   output: {
-    path: path.resolve(__dirname, '../.tmp'),
+    path: resolve('../.tmp'),
     filename: 'test.js'
   },
   resolve: {
@@ -17,4 +19,8 @@ module.exports = {
     ]
   },
   devtool: 'source-map'
+}
+
+function resolve (p) {
+  return path.resolve(__dirname, p)
 }

@@ -28,8 +28,6 @@ export default {
     this.eventBus.$on('update', () => {
       throttledTick(this.render)
     })
-
-    this.$options.canvas!.render = noop
   },
 
   mounted () {
@@ -43,6 +41,12 @@ export default {
       this._renderer.clear()
       this._renderer.render(this)
     }
+  },
+
+  // avoid to print warning on rendering
+  // because a context is treated as a root shape
+  canvas: {
+    render: noop
   },
 
   render (h) {
