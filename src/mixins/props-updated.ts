@@ -10,10 +10,10 @@ export default {
     const propKeys = Object.keys(this.$options.props)
     let prevProps = pick(this, propKeys)
 
-    this.$watch(vm => {
+    this.$watch((vm: Vue) => {
       // check the update of any props 
       const isUpdated = propKeys.reduce((acc, key) => {
-        return acc || prevProps[key] !== vm[key]
+        return acc || prevProps[key] !== (vm as any)[key]
       }, false)
 
       // return previous props to prevent calling propsUpdated hook
