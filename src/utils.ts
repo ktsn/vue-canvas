@@ -28,6 +28,14 @@ export function merge <T, U>(t: T, u: U): T & U {
   return res
 }
 
+export function pick (obj: Dictionary<any>, keys: string[]): Dictionary<any> {
+  const res: any = {}
+  keys.forEach(key => {
+    res[key] = obj[key]
+  })
+  return res
+}
+
 export function shallowEqual (a: Dictionary<any>, b: Dictionary<any>): boolean {
   if (a === b) return true
 
