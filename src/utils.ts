@@ -36,14 +36,6 @@ export function pick (obj: Dictionary<any>, keys: string[]): Dictionary<any> {
   return res
 }
 
-export function shallowEqual (a: Dictionary<any>, b: Dictionary<any>): boolean {
-  if (a === b) return true
-
-  return Object.keys(merge(a, b)).reduce((res, key) => {
-    return res && a[key] === b[key]
-  }, true)
-}
-
 /**
  * Similar to Vue.nextTick but reduce duplicated functions
  */

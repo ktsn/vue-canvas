@@ -4,7 +4,7 @@ import { Dictionary } from '../declarations'
 
 import drawingStateMixin from './drawing-state'
 import propsUpdatedMixin from './props-updated'
-import { shallowEqual, assert } from '../utils'
+import { assert } from '../utils'
 
 interface ShapeMixin extends Vue {
   _prevData: any
@@ -17,9 +17,7 @@ export default {
   mixins: [drawingStateMixin, propsUpdatedMixin],
 
   propsUpdated (newProps, oldProps) {
-    if (!shallowEqual(newProps, oldProps)) {
-      this.eventBus.$emit('update')
-    }
+    this.eventBus.$emit('update')
   },
 
   computed: {
