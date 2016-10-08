@@ -3,6 +3,7 @@ import { ComponentOptions } from 'vue'
 import { Dictionary } from '../declarations'
 
 import drawingStateMixin from './drawing-state'
+import propsUpdatedMixin from './props-updated'
 import { shallowEqual, assert } from '../utils'
 
 interface ShapeMixin extends Vue {
@@ -13,13 +14,13 @@ interface ShapeMixin extends Vue {
 }
 
 export default {
-  mixins: [drawingStateMixin],
+  mixins: [drawingStateMixin, propsUpdatedMixin],
 
   created () {
     this._prevData = this.$options.propsData
   },
 
-  updated () {
+  propsUpdated () {
     const data: { [key: string]: any } = this.$options.propsData!
 
     if (this.shouldRerender(this._prevData, data)) {
@@ -62,10 +63,6 @@ export default {
   },
 
   render (h) {
-    // touch all props data to add deps
-    const options: any = this.$options
-    options._propKeys.forEach((key: string) => (this as any)[key])
-
     // always return empty node
     return h()
   }
