@@ -16,18 +16,10 @@ interface ShapeMixin extends Vue {
 export default {
   mixins: [drawingStateMixin, propsUpdatedMixin],
 
-  created () {
-    this._prevData = this.$options.propsData
-  },
-
-  propsUpdated () {
-    const data: { [key: string]: any } = this.$options.propsData!
-
-    if (this.shouldRerender(this._prevData, data)) {
+  propsUpdated (newProps, oldProps) {
+    if (!shallowEqual(newProps, oldProps)) {
       this.eventBus.$emit('update')
     }
-
-    this._prevData = data
   },
 
   computed: {
@@ -37,10 +29,6 @@ export default {
   },
 
   methods: {
-    shouldRerender (prev: Dictionary<any>, next: Dictionary<any>): boolean {
-      return shallowEqual(prev, next)
-    },
-
     findEventBus (this: ShapeMixin, target: Vue | undefined): Vue {
       assert(
         target !== undefined,
