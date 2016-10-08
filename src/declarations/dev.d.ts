@@ -13,6 +13,6 @@ declare global {
 
 declare module 'vue/types/vue' {
   interface Vue {
-    readonly _contentTag: string
+    readonly _componentTag: string
   }
 }

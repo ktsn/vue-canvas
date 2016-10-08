@@ -30,7 +30,7 @@ export default {
     findEventBus (this: ShapeMixin, target: Vue | undefined): Vue {
       assert(
         target !== undefined,
-        `<${this._contentTag}> must be descendant of a context component`
+        `<${this._componentTag}> must be descendant of a context component`
       )
       const parent: Vue & { eventBus?: Vue } = target!.$parent
 

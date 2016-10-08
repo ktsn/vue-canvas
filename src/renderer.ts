@@ -15,7 +15,7 @@ export class Renderer {
       if (!options || typeof options.render !== 'function') {
         warn(
           'canvas.render must be implemented for the shape components ' +
-          `<${vm._contentTag}>`
+          `<${vm._componentTag}>`
         )
         return
       }
