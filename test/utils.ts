@@ -1,6 +1,6 @@
 import * as assert from 'power-assert'
 import * as Vue from 'vue'
-import { throttledTick, merge } from '../src/utils'
+import { throttledTick, merge, pick } from '../src/utils'
 
 describe('utils', () => {
   it('merge', () => {
@@ -9,6 +9,19 @@ describe('utils', () => {
       a: 1,
       b: 3,
       c: 4
+    })
+  })
+
+  it('pick', () => {
+    const actual = pick({
+      a: 1,
+      b: 2, 
+      c: 3
+    }, ['a', 'c'])
+
+    assert.deepStrictEqual(actual, {
+      a: 1,
+      c: 3
     })
   })
 
