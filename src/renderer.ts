@@ -12,9 +12,9 @@ export class Renderer {
   render (vm: Vue): void {
     const options = vm.$options.canvas!
     if (process.env.NODE_ENV !== 'production') {
-      if (!options || typeof options.render !== 'function') {
+      if (!options) {
         warn(
-          'canvas.render must be implemented for the shape components ' +
+          'canvas options must be defined for descendants of context ' +
           `<${vm._componentTag}>`
         )
         return
@@ -28,7 +28,9 @@ export class Renderer {
     }
 
     // render target shape
-    options.render!.call(vm, this.ctx)
+    if (typeof options.render === 'function') {
+      options.render.call(vm, this.ctx)
+    }
 
     // render child shapes
     vm.$children.forEach(child => this.render(child))

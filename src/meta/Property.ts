@@ -7,10 +7,6 @@ import { noop } from '../utils'
 export default {
   mixins: [drawingStateMixin],
 
-  canvas: {
-    render: noop
-  },
-
   render (h) {
     return h('span', this.$slots['default'])
   }

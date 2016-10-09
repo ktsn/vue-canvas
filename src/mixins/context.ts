@@ -46,12 +46,6 @@ export default {
     }
   },
 
-  // avoid to print warning on rendering
-  // because a context is treated as a root shape
-  canvas: {
-    render: noop
-  },
-
   render (h) {
     const { height, width } = this
 
