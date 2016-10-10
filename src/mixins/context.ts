@@ -1,5 +1,6 @@
 import * as Vue from 'vue'
 import { ComponentOptions } from 'vue'
+
 import drawingStateMixin from './drawing-state'
 import { Renderer } from '../renderer'
 import { noop, throttledTick } from '../utils'
@@ -7,7 +8,7 @@ import { noop, throttledTick } from '../utils'
 interface ContextMixin extends Vue {
   height: number
   width: number
-  eventBus: Vue
+  _eventBus: Vue
   _renderer: Renderer
   render (): void
 }
@@ -27,8 +28,8 @@ export default {
   },
 
   beforeCreate () {
-    this.eventBus = new Vue()
-    this.eventBus.$on('update', () => {
+    this._eventBus = new Vue()
+    this._eventBus.$on('update', () => {
       throttledTick(this.render)
     })
   },

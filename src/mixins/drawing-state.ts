@@ -1,6 +1,8 @@
 import * as Vue from 'vue'
 import { ComponentOptions } from 'vue'
 
+import notifyMixin from './notify'
+
 const props = {
   strokeStyle: String,
   fillStyle: String,
@@ -22,6 +24,8 @@ const props = {
 const propKeys = Object.keys(props) 
 
 export default {
+  mixins: [notifyMixin],
+
   props,
 
   canvas: {

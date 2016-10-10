@@ -22,9 +22,9 @@ describe('Shape Mixin', () => {
     }).$mount()
 
     // dependent event bus
-    vm.eventBus = new Vue()
+    vm._eventBus = new Vue()
     const spy = sinon.spy()
-    vm.eventBus.$on('update', spy)
+    vm._eventBus.$on('update', spy)
 
     vm.test = 2
     Vue.nextTick(() => {
