@@ -1,9 +1,9 @@
-<template lang="html">
+<template>
   <div>
     <context-2d :width="300" :height="300">
-      <rectangle fill :fill-style="a.color" :x="a.x" :y="a.y" :width="a.width" :height="a.height"></rectangle>
+      <r fill :fill-style="a.color" :x="a.x" :y="a.y" :width="a.width" :height="a.height"></r>
       <property :stroke-style="b.color">
-        <rectangle stroke :x="b.x" :y="b.y" :width="b.width" :height="b.height"></rectangle>
+        <r stroke :x="b.x" :y="b.y" :width="b.width" :height="b.height"></r>
       </property>
     </context-2d>
     <div class="">
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { Context2d, Property, Rectangle } from '../../src'
+import { Context2d, Property, Rect } from '../../src'
 
 export default {
   data () {
@@ -51,7 +51,7 @@ export default {
   components: {
     Context2d,
     Property,
-    Rectangle
+    r: Rect
   }
 }
 </script>
