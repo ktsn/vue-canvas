@@ -1,11 +1,11 @@
 import * as Vue from 'vue'
 import { ComponentOptions } from 'vue'
 
-import drawingStateMixin from '../mixins/drawing-state'
+import propertyMixin from '../mixins/property'
 import { noop } from '../utils'
 
 export default {
-  mixins: [drawingStateMixin],
+  mixins: [propertyMixin],
 
   render (h) {
     return h('span', this.$slots['default'])

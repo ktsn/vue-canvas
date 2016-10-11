@@ -2,11 +2,11 @@ import * as Vue from 'vue'
 import { ComponentOptions } from 'vue'
 import { Dictionary } from '../declarations'
 
-import drawingStateMixin from './drawing-state'
+import propertyMixin from './property'
 import { assert } from '../utils'
 
 export default {
-  mixins: [drawingStateMixin],
+  mixins: [propertyMixin],
 
   canvas: {
     render () {
